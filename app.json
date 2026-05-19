@@ -1,7 +1,30 @@
 {
   "expo": {
-    "name": "cuida",
+    "name": "Cuida",
     "slug": "cuida",
-    "version": "1.0.0"
+    "version": "1.0.0",
+    "scheme": "your-app-scheme",
+    "userInterfaceStyle": "automatic",
+    "experiments": {
+      "typedRoutes": true
+    },
+    "plugins": [
+      "expo-router",
+      "expo-secure-store",
+      "expo-font"
+    ],
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "3061e769-a620-447b-8478-2838d3554629"
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#FFFFFF"
+      },
+      "package": "com.guiborim.cuida"
+    }
   }
 }

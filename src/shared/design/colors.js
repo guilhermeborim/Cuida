@@ -1,12 +1,12 @@
-export const colors = {
+const colors = {
   // Principais
   primary: "#1D9E75",
   primaryLight: "#E1F5EE",
   primaryDark: "#0F6E56",
 
   // Backgrounds
-  background: "#FFFFFF",
-  surface: "#F8F8F6",
+  background: "#FBF6EF",
+  surface: "#F3ECE0",
 
   // Texto
   textPrimary: "#1A1A1A",
@@ -38,4 +38,6 @@ export const colors = {
   // Bordas
   border: "#E0E0E0",
   borderLight: "#F0F0F0",
-} as const;
+};
+
+module.exports = colors;

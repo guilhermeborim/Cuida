@@ -4,7 +4,7 @@ import { Redirect } from "expo-router";
 export default function Index() {
   const { token } = useUserStore();
 
-  if (token) {
+  if (!token) {
     return <Redirect href="/(app)/home" />;
   }
 

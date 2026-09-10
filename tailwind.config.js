@@ -1,6 +1,4 @@
-/** @type {import('tailwindcss').Config} */
-const colors = require("./src/shared/design/colors");
-
+/** @type {import("tailwindcss").Config} */
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   presets: [require("nativewind/preset")],
@@ -12,8 +10,97 @@ module.exports = {
       bold: ["Figtree_700Bold"],
     },
     colors: {
-      ...colors,
+      green: {
+        primary: "#1D9E75",
+        light: "#E1F5EE",
+        dark: "#0F6E56",
+      },
+      text: {
+        primary: "#1A1A1A",
+        secondary: "#888888",
+        hint: "#B4B2A9",
+      },
+      success: {
+        DEFAULT: "#0F6E56",
+        primary: "#1D9E75",
+        light: "#E1F5EE",
+        text: "#0F6E56",
+      },
+      warning: {
+        DEFAULT: "#854F0B",
+        primary: "#EF9F27",
+        light: "#FAEEDA",
+        text: "#854F0B",
+      },
+      danger: {
+        DEFAULT: "#A32D2D",
+        primary: "#E24B4A",
+        light: "#FCEBEB",
+        text: "#A32D2D",
+      },
+      info: {
+        DEFAULT: "#0C447C",
+        primary: "#378ADD",
+        light: "#E6F1FB",
+        text: "#0C447C",
+      },
+      purple: {
+        primary: "#534AB7",
+        light: "#EEEDFE",
+        text: "#3C3489",
+      },
+      background: "#FBF6EF",
+      surface: "#F3ECE0",
+      border: "#E0E0E0",
+      borderLight: "#F0F0F0",
     },
+    spacing: {
+      xs: "4px",
+      sm: "8px",
+      md: "16px",
+      lg: "24px",
+      xl: "32px",
+      "2xl": "48px",
+      gutter: "24px",
+      "icon-sm": "20px",
+      icon: "24px",
+      "icon-lg": "32px",
+      avatar: "48px",
+      "avatar-lg": "64px",
+    },
+    fontSize: {
+      display: ["32px", { lineHeight: "40px" }],
+      heading: ["28px", { lineHeight: "36px" }],
+      title: ["24px", { lineHeight: "32px" }],
+      body: ["18px", { lineHeight: "28px" }],
+      bodySmall: ["16px", { lineHeight: "24px" }],
+      caption: ["14px", { lineHeight: "20px" }],
+      label: ["16px", { lineHeight: "24px" }],
+    },
+    lineHeight: {
+      display: "40px",
+      heading: "36px",
+      title: "32px",
+      body: "28px",
+      bodySmall: "24px",
+      caption: "20px",
+      label: "24px",
+    },
+    borderRadius: {
+      input: "12px",
+      button: "12px",
+      card: "16px",
+      modal: "24px",
+      pill: "9999px",
+    },
+    boxShadow: {
+      card: "0px 2px 4px rgba(26, 26, 26, 0.10)",
+      raised: "0px 4px 8px rgba(26, 26, 26, 0.14)",
+      modal: "0px 8px 16px rgba(26, 26, 26, 0.18)",
+    },
+    minHeight: { touch: "48px", button: "56px", input: "56px" },
+    minWidth: { touch: "48px" },
+    maxWidth: { content: "640px", modal: "480px" },
   },
   plugins: [],
 };

@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { BlurEvent, FocusEvent, TextInput } from "react-native";
 
 interface useInputProps {
@@ -21,22 +21,10 @@ export const useInput = ({
   onChangeText,
   value,
 }: useInputProps) => {
-  const [isFocused, setIsFocused] = useState(false);
-
   const inputRef = useRef<TextInput>(null);
 
   const handleWrapperPress = () => {
     inputRef.current?.focus();
-  };
-
-  const handleFocus = (event: FocusEvent) => {
-    setIsFocused(true);
-    onFocus?.(event);
-  };
-
-  const handleBlur = (event: BlurEvent) => {
-    setIsFocused(false);
-    onBlur?.(event);
   };
 
   const handleTextChange = (text: string) => {
@@ -48,10 +36,7 @@ export const useInput = ({
   };
 
   return {
-    handleBlur,
-    handleFocus,
     handleWrapperPress,
     handleTextChange,
-    isFocused,
   };
 };

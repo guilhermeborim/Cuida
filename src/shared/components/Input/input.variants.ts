@@ -2,34 +2,28 @@ import { tv, type VariantProps } from "tailwind-variants";
 
 export const InputVariants = tv({
   slots: {
-    container: "w-full",
-    wrapper: "flex-row items-center border-b border-danger",
-    input: "bg-transparent text-danger text-base flex-1",
-    label: "text-xs text-danger font-bold uppercase",
-    error: "text-sm text-danger mt-1",
+    container: "gap-sm",
+    wrapper:
+      "min-h-input flex-row rounded-input border border-green-dark px-md ",
+    input:
+      "bg-transparent text-text-primary text-md flex-1 placeholder:text-text-hint",
+    label: "font-semibold text-label text-text-primary",
+    error: "text-sm text-danger-primary mt-1",
   },
   variants: {
-    isFocused: {
-      true: {
-        wrapper: "border-danger",
-        label: "text-danger",
-      },
-    },
     isError: {
       true: {
-        wrapper: "border-danger",
-        label: "text-danger",
+        wrapper: "border-danger-primary",
       },
     },
     isDisabled: {
       true: {
         wrapper: "opacity-50",
-        input: "text-danger",
+        input: "text-danger-primary",
       },
     },
   },
   defaultVariants: {
-    isFocused: false,
     isError: false,
     isDisabled: false,
   },

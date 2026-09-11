@@ -1,29 +1,29 @@
-import { View } from "react-native";
-import { KeyboardAwareScrollView } from "react-native-keyboard-controller";
+import { Keyboard, TouchableWithoutFeedback, View } from "react-native";
+import { KeyboardAvoidingView } from "react-native-keyboard-controller";
 import { SafeAreaView } from "react-native-safe-area-context";
+
 interface KeyboardContainerProps {
   children: React.ReactNode;
+  isKeyboardAvoidingEnabled?: boolean;
 }
-export const KeyboardContainer = ({ children }: KeyboardContainerProps) => {
+
+export const KeyboardContainer = ({
+  children,
+  isKeyboardAvoidingEnabled = true,
+}: KeyboardContainerProps) => {
   return (
-    <SafeAreaView className="flex-1 bg-cuida-background">
-      <KeyboardAwareScrollView
-        style={{ flex: 1 }}
-        contentContainerStyle={{
-          flexGrow: 1,
-        }}
-        keyboardShouldPersistTaps="handled"
-        keyboardDismissMode="on-drag"
-      >
-        <View
-          style={{
-            width: "100%",
-            alignSelf: "center",
-          }}
-        >
-          {children}
-        </View>
-      </KeyboardAwareScrollView>
+    <SafeAreaView className="flex-1 bg-surface" edges={["top", "bottom"]}>
+      {isKeyboardAvoidingEnabled ? (
+        <KeyboardAvoidingView behavior="padding" className="flex-1">
+          <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+            <View className="flex-1">{children}</View>
+          </TouchableWithoutFeedback>
+        </KeyboardAvoidingView>
+      ) : (
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          <View className="flex-1">{children}</View>
+        </TouchableWithoutFeedback>
+      )}
     </SafeAreaView>
   );
 };

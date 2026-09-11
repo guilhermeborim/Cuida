@@ -24,7 +24,7 @@ export const Input = ({
   isDisabled,
   ...textInputProps
 }: InputProps) => {
-  const { handleBlur, handleFocus, handleTextChange, isFocused } = useInput({
+  const { handleTextChange } = useInput({
     onBlur,
     onFocus,
     isError: !!error,
@@ -34,15 +34,13 @@ export const Input = ({
     secureTextEntry,
     value,
   });
-  const styles = InputVariants({ isFocused, isDisabled, isError: !!error });
+  const styles = InputVariants({ isDisabled, isError: !!error });
 
   return (
     <View className={styles.container({ className: containerClassName })}>
       <Text className={styles.label()}>{label}</Text>
       <Pressable className={styles.wrapper()}>
         <TextInput
-          onBlur={handleBlur}
-          onFocus={handleFocus}
           onChangeText={handleTextChange}
           value={value}
           secureTextEntry={secureTextEntry}

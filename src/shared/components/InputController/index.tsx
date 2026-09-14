@@ -20,6 +20,7 @@ export const InputController = <T extends FieldValues>({
   name,
   control,
   errors,
+  onBlur: onInputBlur,
   ...rest
 }: InputControllerProps<T>) => {
   return (
@@ -32,7 +33,10 @@ export const InputController = <T extends FieldValues>({
         formState: { isSubmitting },
       }) => (
         <Input
-          onBlur={onBlur}
+          onBlur={(event) => {
+            onBlur();
+            onInputBlur?.(event);
+          }}
           onChangeText={onChange}
           value={value}
           error={error?.message}

@@ -3,7 +3,7 @@ import { Image, Text, View } from "react-native";
 export default function SignInHeader() {
   return (
     <>
-      <View className="gap-sm pb-lg pt-md">
+      <View className="gap-sm pb-lg">
         <View className="flex-row items-center justify-between">
           <Text className="font-semibold text-label text-warning-text">
             Bem-vindo de volta

@@ -15,6 +15,7 @@ export default function SignInForm({ control, children }: SignInFormProps) {
           name="email"
           placeholder="email@exemplo.com"
           label="E-mail"
+          keyboardType="email-address"
         />
 
         <View className="gap-sm">

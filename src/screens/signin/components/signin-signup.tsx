@@ -1,3 +1,4 @@
+import { router } from "expo-router";
 import { Text, TouchableOpacity, View } from "react-native";
 
 export default function SignInSignUp() {
@@ -7,7 +8,7 @@ export default function SignInSignUp() {
         <Text className="font-regular text-bodySmall text-text-primary">
           Ainda não tem uma conta?
         </Text>
-        <TouchableOpacity className="min-h-touch min-w-touch items-center justify-center rounded-button px-sm py-sm active:bg-green-light">
+        <TouchableOpacity accessibilityRole="link" onPress={() => router.push("/(auth)/signup")} className="min-h-touch min-w-touch items-center justify-center rounded-button px-sm py-sm active:bg-green-light">
           <Text className="font-semibold text-label text-green-dark underline">
             Cadastre-se
           </Text>

@@ -95,7 +95,7 @@ class CuidaApiClient {
         }
 
         if (error.response) {
-          const message = this.getApiErrorMessage(error.response.data);
+          const message = this.getApiErrorMessage(error.response.data, status);
 
           return Promise.reject(new Error(message));
         }
@@ -113,7 +113,11 @@ class CuidaApiClient {
     );
   }
 
-  private getApiErrorMessage(data?: ApiErrorResponse) {
+  private getApiErrorMessage(data?: ApiErrorResponse, status?: number) {
+    if (status === 404) {
+      return "Recurso não encontrado.";
+    }
+
     if (!data?.message) {
       return "Ocorreu um erro inesperado.";
     }

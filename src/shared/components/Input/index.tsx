@@ -41,6 +41,7 @@ export const Input = ({
       <Text className={styles.label()}>{label}</Text>
       <Pressable className={styles.wrapper()}>
         <TextInput
+          onBlur={onBlur}
           onChangeText={handleTextChange}
           value={value}
           secureTextEntry={secureTextEntry}

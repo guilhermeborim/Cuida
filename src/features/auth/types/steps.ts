@@ -1,8 +1,9 @@
+import type { FieldPath } from "react-hook-form";
 import { SignUpRequest } from "../schemas/signup.schema";
 
 export const steps: {
   title: string;
-  fields: (keyof SignUpRequest)[];
+  fields: FieldPath<SignUpRequest>[];
 }[] = [
   {
     title: "Como você se chama?",
@@ -19,5 +20,13 @@ export const steps: {
   {
     title: "Crie sua senha",
     fields: ["password"],
+  },
+  {
+    title: "Quem você quer cuidar primeiro?",
+    fields: ["option"],
+  },
+  {
+    title: "Complete os dados de quem receberá os cuidados",
+    fields: ["person.name", "person.relationship", "person.cpf", "person.emergencyPhone"],
   },
 ];

@@ -10,6 +10,7 @@ interface SignUpSubmitProps {
   setStep: (step: number) => void;
   isLoading: boolean;
   isCheckingEmail: boolean;
+  isDisabled: boolean;
 }
 
 export default function SignUpSubmit({
@@ -19,12 +20,14 @@ export default function SignUpSubmit({
   setStep,
   isLoading,
   isCheckingEmail,
+  isDisabled,
 }: SignUpSubmitProps) {
   return (
     <View className="flex-row">
       {step > 0 && (
         <TouchableOpacity
           accessibilityRole="button"
+          accessibilityLabel="Voltar para a etapa anterior"
           disabled={isLoading}
           onPress={() => {
             setStep(step - 1);
@@ -38,8 +41,9 @@ export default function SignUpSubmit({
         className="flex-1"
         onPress={() => void advance()}
         isLoading={isLoading || isCheckingEmail}
+        isDisabled={isDisabled}
       >
-        {isLastStep ? "Criar conta" : "Continuar"}
+        {isLastStep ? "Cadastrar" : "Continuar"}
       </Button>
     </View>
   );

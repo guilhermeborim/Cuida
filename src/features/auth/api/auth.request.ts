@@ -14,7 +14,7 @@ class AuthRequest {
   }
 
   async register(data: SignUpRequest) {
-    const response = await cuidaApiClient.post("/user", data);
+    const response = await cuidaApiClient.post("/user/register", data);
 
     return response.data;
   }

@@ -10,12 +10,17 @@ import { authRequest } from "../api/auth.request";
 import { SignUpMutation } from "../mutations/auth.mutation";
 import { steps } from "../types/steps";
 
+export type CareRecipient = "self" | "other";
+
 export function useSignUp() {
   const signUpMutation = SignUpMutation();
   const [step, setStep] = useState(0);
   const advancing = useRef(false);
   const isLastStep = step === steps.length - 1;
   const [showPassword, setShowPassword] = useState(false);
+  const [careRecipient, setCareRecipient] = useState<CareRecipient | null>(
+    null,
+  );
 
   const [isCheckingEmail, setIsCheckingEmail] = useState(false);
   const [isCheckingPhone, setIsCheckingPhone] = useState(false);
@@ -32,12 +37,30 @@ export function useSignUp() {
       email: "",
       phone: "",
       password: "",
+      relationship: undefined,
+      person: {
+        name: "",
+        cpf: "",
+        emergencyPhone: "",
+      },
     },
   });
 
   const onSubmit = form.handleSubmit((data) => {
     signUpMutation.mutate(data);
   });
+
+  const selectCareRecipient = (value: CareRecipient) => {
+    if (signUpMutation.isPending) return;
+    if (value !== careRecipient) {
+      form.resetField("person.name");
+      form.resetField("relationship");
+      form.resetField("person.cpf");
+      form.resetField("person.emergencyPhone");
+    }
+    setCareRecipient(value);
+    form.setValue("option", value, { shouldDirty: true });
+  };
 
   const handleEmailBlur = async () => {
     if (advancing.current) return;
@@ -111,6 +134,7 @@ export function useSignUp() {
   };
 
   const advance = async () => {
+    if (signUpMutation.isPending) return;
     if (steps[step].fields.includes("email")) {
       await handleEmailBlur();
       return;
@@ -125,6 +149,8 @@ export function useSignUp() {
     advancing.current = true;
     try {
       if (isLastStep) {
+        if (!careRecipient) return;
+        form.setValue("option", careRecipient);
         await onSubmit();
       } else if (await form.trigger(steps[step].fields)) {
         setStep(step + 1);
@@ -140,6 +166,8 @@ export function useSignUp() {
     isLastStep,
     showPassword,
     setShowPassword,
+    careRecipient,
+    selectCareRecipient,
     form,
     advance,
     setStep,

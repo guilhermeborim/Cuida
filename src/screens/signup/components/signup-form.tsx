@@ -1,20 +1,26 @@
 import { InputController } from "@/shared/components/InputController";
+import type { CareRecipient } from "@/features/auth/hooks/use-signup";
+import type { SignUpRequest } from "@/features/auth/schemas/signup.schema";
+import type { UseFormReturn } from "react-hook-form";
 import { Text, TouchableOpacity, View } from "react-native";
+import SignUpRelationship from "./signup-relationship";
 
 interface SignUpFormProps {
   step: number;
-  isLastStep: boolean;
+  careRecipient: CareRecipient | null;
+  isLoading: boolean;
   showPassword: boolean;
   setShowPassword: (value: React.SetStateAction<boolean>) => void;
   advance: () => void;
-  form: any;
+  form: UseFormReturn<SignUpRequest>;
   handleEmailBlur: () => Promise<void>;
   handlePhoneBlur: () => Promise<void>;
 }
 
 export default function SignUpForm({
   step,
-  isLastStep,
+  careRecipient,
+  isLoading,
   showPassword,
   setShowPassword,
   advance,
@@ -58,7 +64,7 @@ export default function SignUpForm({
           onSubmitEditing={() => void advance()}
         />
       )}
-      {isLastStep && (
+      {step === 3 && (
         <>
           <InputController
             control={form.control}
@@ -79,6 +85,42 @@ export default function SignUpForm({
             </Text>
           </TouchableOpacity>
         </>
+      )}
+      {step === 5 && (
+        <View className="gap-md">
+          {careRecipient === "other" && (
+            <SignUpRelationship control={form.control} disabled={isLoading} />
+          )}
+          {careRecipient === "other" && (
+            <InputController
+              control={form.control}
+              name="person.name"
+              label="Nome de quem receberá os cuidados"
+              placeholder="Digite o nome completo"
+              autoCapitalize="words"
+              isDisabled={isLoading}
+            />
+          )}
+          <InputController
+            control={form.control}
+            name="person.cpf"
+            label={careRecipient === "self" ? "Seu CPF" : "CPF de quem receberá os cuidados"}
+            placeholder="Digite os 11 dígitos do CPF"
+            keyboardType="number-pad"
+            maxLength={11}
+            isDisabled={isLoading}
+          />
+          <InputController
+            control={form.control}
+            name="person.emergencyPhone"
+            label="Telefone de emergência com DDD"
+            placeholder="11999999999"
+            keyboardType="phone-pad"
+            maxLength={11}
+            isDisabled={isLoading}
+            onSubmitEditing={() => void advance()}
+          />
+        </View>
       )}
     </View>
   );

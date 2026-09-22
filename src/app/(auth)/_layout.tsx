@@ -5,7 +5,7 @@ export default function PublicLayout() {
   const token = useUserStore((state) => state.token);
 
   if (token) {
-    return <Redirect href="/(app)/home" />;
+    return <Redirect href="/(app)" />;
   }
 
   return <Stack screenOptions={{ headerShown: false }} />;

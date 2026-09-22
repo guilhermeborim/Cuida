@@ -12,7 +12,10 @@ export const KeyboardContainer = ({
   isKeyboardAvoidingEnabled = true,
 }: KeyboardContainerProps) => {
   return (
-    <SafeAreaView className="flex-1 bg-surface" edges={["top", "bottom"]}>
+    <SafeAreaView
+      className="flex-1 bg-surface px-md pt-md"
+      edges={["top", "bottom"]}
+    >
       {isKeyboardAvoidingEnabled ? (
         <KeyboardAvoidingView behavior="padding" className="flex-1">
           <TouchableWithoutFeedback onPress={Keyboard.dismiss}>

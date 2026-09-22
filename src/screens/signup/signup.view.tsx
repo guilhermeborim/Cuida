@@ -1,5 +1,5 @@
 import { useSignUp } from "@/features/auth/hooks/use-signup";
-import Container from "@/shared/components/Container";
+import { KeyboardContainer } from "@/shared/components/KeyboardContainer";
 import { router } from "expo-router";
 import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import SignUpForm from "./components/signup-form";
@@ -28,7 +28,7 @@ export default function SignupView() {
   } = useSignUp();
 
   return (
-    <Container isKeyboardAvoidingEnabled={step === 6 ? false : true}>
+    <KeyboardContainer isKeyboardAvoidingEnabled={step === 6 ? false : true}>
       <ScrollView
         key={step}
         className="flex-1"
@@ -102,6 +102,6 @@ export default function SignupView() {
           </View>
         </View>
       </ScrollView>
-    </Container>
+    </KeyboardContainer>
   );
 }

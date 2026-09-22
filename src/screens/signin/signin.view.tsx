@@ -1,5 +1,5 @@
 import { useSignIn } from "@/features/auth/hooks/use-signin";
-import Container from "@/shared/components/Container";
+import { KeyboardContainer } from "@/shared/components/KeyboardContainer";
 import { View } from "react-native";
 import SignInForgotPassword from "./components/signin-forgot-password";
 import SignInForm from "./components/signin-form";
@@ -11,7 +11,7 @@ export default function SigninView() {
   const { onSubmit, form, isError, isLoading } = useSignIn();
 
   return (
-    <Container isKeyboardAvoidingEnabled={false}>
+    <KeyboardContainer isKeyboardAvoidingEnabled={false}>
       <SignInHeader />
 
       <SignInForm control={form.control} children={<SignInForgotPassword />} />
@@ -21,6 +21,6 @@ export default function SigninView() {
 
         <SignInSignUp />
       </View>
-    </Container>
+    </KeyboardContainer>
   );
 }

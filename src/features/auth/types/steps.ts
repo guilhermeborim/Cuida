@@ -27,6 +27,11 @@ export const steps: {
   },
   {
     title: "Complete os dados de quem receberá os cuidados",
-    fields: ["person.name", "person.relationship", "person.cpf", "person.emergencyPhone"],
+    fields: [
+      "person.name",
+      "relationship",
+      "person.cpf",
+      "person.emergencyPhone",
+    ],
   },
 ];

@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { careRelationships } from "../types/care-relationship";
+import { careRelationships } from "@/shared/types/care-relationship";
 
 export const signUpSchema = z
   .object({
@@ -25,7 +25,7 @@ export const signUpSchema = z
     if (data.option === "other" && !data.relationship) {
       context.addIssue({
         code: "custom",
-        path: ["person", "relationship"],
+        path: ["relationship"],
         message: "Escolha a relação com você.",
       });
     }

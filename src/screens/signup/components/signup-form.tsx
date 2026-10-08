@@ -1,9 +1,9 @@
-import { InputController } from "@/shared/components/InputController";
 import type { CareRecipient } from "@/features/auth/hooks/use-signup";
 import type { SignUpRequest } from "@/features/auth/schemas/signup.schema";
+import { InputController } from "@/shared/components/InputController";
+import { PatientForm } from "@/shared/components/PatientForm";
 import type { UseFormReturn } from "react-hook-form";
 import { Text, TouchableOpacity, View } from "react-native";
-import SignUpRelationship from "./signup-relationship";
 
 interface SignUpFormProps {
   step: number;
@@ -87,40 +87,18 @@ export default function SignUpForm({
         </>
       )}
       {step === 5 && (
-        <View className="gap-md">
-          {careRecipient === "other" && (
-            <SignUpRelationship control={form.control} disabled={isLoading} />
-          )}
-          {careRecipient === "other" && (
-            <InputController
-              control={form.control}
-              name="person.name"
-              label="Nome de quem receberá os cuidados"
-              placeholder="Digite o nome completo"
-              autoCapitalize="words"
-              isDisabled={isLoading}
-            />
-          )}
-          <InputController
-            control={form.control}
-            name="person.cpf"
-            label={careRecipient === "self" ? "Seu CPF" : "CPF de quem receberá os cuidados"}
-            placeholder="Digite os 11 dígitos do CPF"
-            keyboardType="number-pad"
-            maxLength={11}
-            isDisabled={isLoading}
-          />
-          <InputController
-            control={form.control}
-            name="person.emergencyPhone"
-            label="Telefone de emergência com DDD"
-            placeholder="11999999999"
-            keyboardType="phone-pad"
-            maxLength={11}
-            isDisabled={isLoading}
-            onSubmitEditing={() => void advance()}
-          />
-        </View>
+        <PatientForm
+          control={form.control}
+          fields={{
+            name: "person.name",
+            cpf: "person.cpf",
+            emergencyPhone: "person.emergencyPhone",
+            relationship: "relationship",
+          }}
+          isSelf={careRecipient === "self"}
+          isLoading={isLoading}
+          onSubmitEditing={() => void advance()}
+        />
       )}
     </View>
   );

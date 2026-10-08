@@ -19,7 +19,7 @@ export const InputVariants = tv({
     isDisabled: {
       true: {
         wrapper: "opacity-50",
-        input: "text-danger-primary",
+        input: "text-text-hint",
       },
     },
   },

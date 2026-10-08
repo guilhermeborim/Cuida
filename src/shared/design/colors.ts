@@ -43,4 +43,5 @@ export const colors = {
   border: "#E0E0E0",
   borderLight: "#F0F0F0",
   transparent: "transparent",
+  white: "#FFFFFF",
 };

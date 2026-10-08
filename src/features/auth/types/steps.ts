@@ -26,7 +26,7 @@ export const steps: {
     fields: ["option"],
   },
   {
-    title: "Complete os dados de quem receberá os cuidados",
+    title: "Complete os dados",
     fields: [
       "person.name",
       "relationship",

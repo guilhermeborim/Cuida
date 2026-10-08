@@ -1,6 +1,8 @@
 import { useSignIn } from "@/features/auth/hooks/use-signin";
-import { KeyboardContainer } from "@/shared/components/KeyboardContainer";
+import SafeAreaContainer from "@/shared/components/SafeAreaContainer";
 import { View } from "react-native";
+import { KeyboardStickyView } from "react-native-keyboard-controller";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import SignInForgotPassword from "./components/signin-forgot-password";
 import SignInForm from "./components/signin-form";
 import SignInHeader from "./components/signin-header";
@@ -8,19 +10,25 @@ import SignInSignUp from "./components/signin-signup";
 import SignInSubmit from "./components/signin-submit";
 
 export default function SigninView() {
-  const { onSubmit, form, isError, isLoading } = useSignIn();
+  const { onSubmit, form, isLoading } = useSignIn();
+  const insets = useSafeAreaInsets();
 
   return (
-    <KeyboardContainer isKeyboardAvoidingEnabled={false}>
-      <SignInHeader />
+    <SafeAreaContainer>
+      <View className="flex-1">
+        <SignInHeader />
 
-      <SignInForm control={form.control} children={<SignInForgotPassword />} />
-
-      <View className="flex-1 justify-end gap-sm mb-md">
-        <SignInSubmit onSubmit={onSubmit} isLoading={isLoading} />
-
-        <SignInSignUp />
+        <SignInForm
+          control={form.control}
+          children={<SignInForgotPassword />}
+        />
       </View>
-    </KeyboardContainer>
+      <SignInSignUp />
+      <KeyboardStickyView offset={{ opened: insets.bottom }}>
+        <View className="pb-md">
+          <SignInSubmit onSubmit={onSubmit} isLoading={isLoading} />
+        </View>
+      </KeyboardStickyView>
+    </SafeAreaContainer>
   );
 }

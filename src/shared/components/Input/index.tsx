@@ -25,14 +25,8 @@ export const Input = ({
   ...textInputProps
 }: InputProps) => {
   const { handleTextChange } = useInput({
-    onBlur,
-    onFocus,
-    isError: !!error,
     mask,
     onChangeText,
-    isDisabled,
-    secureTextEntry,
-    value,
   });
   const styles = InputVariants({ isDisabled, isError: !!error });
 

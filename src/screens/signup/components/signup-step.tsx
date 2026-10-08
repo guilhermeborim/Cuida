@@ -6,7 +6,7 @@ export default function SignUpStep({ step, steps }: SignUpProgressProps) {
     <>
       <Text
         accessibilityRole="header"
-        className="font-bold text-display text-green-dark"
+        className="font-semibold text-heading text-green-dark"
       >
         {steps[step].title}
       </Text>

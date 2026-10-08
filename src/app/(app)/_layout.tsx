@@ -14,18 +14,22 @@ export default function PrivateLayout() {
     <Tabs
       screenOptions={{
         headerShown: false,
-        // tabBarStyle: { backgroundColor: colors.surface },
+        tabBarStyle: {
+          backgroundColor: colors.surface,
+        },
+        tabBarActiveTintColor: colors.text.primary,
+        tabBarInactiveTintColor: colors.text.primary,
       }}
     >
       <Tabs.Screen
         name="index"
         options={{
           title: "Inicio",
-          tabBarIcon: ({ focused }) => (
+          tabBarIcon: ({ color, size, focused }) => (
             <Ionicons
-              size={14}
-              name="home"
-              color={focused ? colors.green.primary : colors.text.secondary}
+              name={focused ? "home" : "home-outline"}
+              size={size}
+              color={color}
             />
           ),
         }}
@@ -33,9 +37,13 @@ export default function PrivateLayout() {
       <Tabs.Screen
         name="patients"
         options={{
-          title: "",
-          tabBarIcon: ({ color }) => (
-            <Ionicons size={14} name="person" color={color} />
+          title: "Pacientes",
+          tabBarIcon: ({ color, size, focused }) => (
+            <Ionicons
+              name={focused ? "people" : "people-outline"}
+              size={size}
+              color={color}
+            />
           ),
         }}
       />

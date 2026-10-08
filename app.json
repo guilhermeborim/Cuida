@@ -8,11 +8,7 @@
     "experiments": {
       "typedRoutes": true
     },
-    "plugins": [
-      "expo-router",
-      "expo-secure-store",
-      "expo-font"
-    ],
+    "plugins": ["expo-router", "expo-secure-store", "expo-font"],
     "extra": {
       "router": {},
       "eas": {
@@ -25,6 +21,10 @@
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.guiborim.cuida"
+    },
+    "androidNavigationBar": {
+      "barStyle": "dark-content",
+      "enforceContrast": false
     }
   }
 }

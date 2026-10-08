@@ -1,10 +1,16 @@
-import type { SignUpRequest } from "@/features/auth/schemas/signup.schema";
+import { colors } from "@/shared/design/colors";
 import {
   careRelationshipLabels,
   careRelationships,
-} from "@/features/auth/types/care-relationship";
+} from "@/shared/types/care-relationship";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { useState } from "react";
-import { Controller, type Control } from "react-hook-form";
+import {
+  Controller,
+  type Control,
+  type FieldValues,
+  type Path,
+} from "react-hook-form";
 import {
   Keyboard,
   Modal,
@@ -16,11 +22,13 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-export default function SignUpRelationship({
+export default function PatientRelationship<T extends FieldValues>({
   control,
+  name,
   disabled,
 }: {
-  control: Control<SignUpRequest>;
+  control: Control<T>;
+  name: Path<T>;
   disabled: boolean;
 }) {
   const [expanded, setExpanded] = useState(false);
@@ -28,7 +36,7 @@ export default function SignUpRelationship({
   return (
     <Controller
       control={control}
-      name="relationship"
+      name={name}
       render={({
         field: { value, onChange, onBlur },
         fieldState: { error },
@@ -38,22 +46,27 @@ export default function SignUpRelationship({
             Relação com você
           </Text>
           <TouchableOpacity
-            accessibilityRole="button"
-            accessibilityLabel={`Relação com você: ${value ? careRelationshipLabels[value] : "Selecione uma opção"}`}
-            accessibilityState={{ expanded, disabled }}
             disabled={disabled}
             onPress={() => {
               Keyboard.dismiss();
               setExpanded(true);
               onBlur();
             }}
-            className="min-h-touch justify-center rounded-button border border-green-dark p-md"
+            className={`min-h-input flex-row items-center justify-between gap-sm rounded-input border bg-white p-md ${error ? "border-danger-primary" : "border-border"} ${disabled ? "opacity-50" : ""}`}
           >
-            <Text
-              className={`font-regular text-caption ${value ? "text-text-primary" : "text-text-hint"}`}
-            >
-              {value ? careRelationshipLabels[value] : "Selecione uma opção"}
+            <Text className="flex-1 font-regular text-bodySmall text-text-primary">
+              {value
+                ? careRelationshipLabels[
+                    value as keyof typeof careRelationshipLabels
+                  ]
+                : "Selecione"}
             </Text>
+            <Ionicons
+              name="chevron-down"
+              size={20}
+              color={colors.green.dark}
+              accessible={false}
+            />
           </TouchableOpacity>
           <Modal
             visible={expanded}
@@ -81,8 +94,6 @@ export default function SignUpRelationship({
                     Relação com você
                   </Text>
                   <TouchableOpacity
-                    accessibilityRole="button"
-                    accessibilityLabel="Fechar seleção de relação"
                     onPress={() => setExpanded(false)}
                     className="min-h-touch min-w-touch items-center justify-center rounded-button px-sm active:bg-green-light"
                   >

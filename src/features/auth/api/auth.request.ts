@@ -13,6 +13,12 @@ class AuthRequest {
     return response.data;
   }
 
+  async profile() {
+    const response = await cuidaApiClient.get("/user/profile");
+
+    return response.data;
+  }
+
   async register(data: SignUpRequest) {
     const response = await cuidaApiClient.post("/user/register", data);
 

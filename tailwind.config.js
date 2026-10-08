@@ -5,6 +5,22 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   presets: [require("nativewind/preset")],
   theme: {
+    extend: {
+      spacing: {
+        xs: "4px",
+        sm: "8px",
+        md: "16px",
+        lg: "24px",
+        xl: "32px",
+        "2xl": "48px",
+        gutter: "24px",
+        "icon-sm": "20px",
+        icon: "24px",
+        "icon-lg": "32px",
+        avatar: "48px",
+        "avatar-lg": "64px",
+      },
+    },
     fontFamily: {
       regular: ["Figtree_400Regular"],
       medium: ["Figtree_500Medium"],
@@ -14,20 +30,7 @@ module.exports = {
     colors: {
       ...colors,
     },
-    spacing: {
-      xs: "4px",
-      sm: "8px",
-      md: "16px",
-      lg: "24px",
-      xl: "32px",
-      "2xl": "48px",
-      gutter: "24px",
-      "icon-sm": "20px",
-      icon: "24px",
-      "icon-lg": "32px",
-      avatar: "48px",
-      "avatar-lg": "64px",
-    },
+
     fontSize: {
       display: ["32px", { lineHeight: "40px" }],
       heading: ["28px", { lineHeight: "36px" }],
